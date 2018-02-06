@@ -1,0 +1,45 @@
+<resources>
+    <string name="app_name">Emergency Connect</string>
+
+
+    <string-array name="contacts">
+        <item>Jonathan</item>
+        <item>Triston</item>
+        <item>Paiton</item>
+        <item>Sean</item>
+        <item>Robert</item>
+        <item>Jason</item>
+        <item>Jarod</item>
+        <item>Ryan</item>
+        <item>Bobert</item>
+        <item>Alex</item>
+        <item>Clancy</item>
+        <item>Henry</item>
+        <item>Rachel</item>
+        <item>Quinton</item>
+        <item>Sam</item>
+        <item>Sarah</item>
+    </string-array>
+
+    <string-array name="numbers">
+        <item>545-544-8956</item>
+        <item>125-578-5865</item>
+        <item>789-525-6526</item>
+        <item>556-556-5833</item>
+        <item>781-262-6321</item>
+        <item>472-586-3248</item>
+        <item>156-586-9755</item>
+        <item>723-654-5823</item>
+        <item>459-658-1272</item>
+        <item>752-632-4585</item>
+        <item>985-662-5465</item>
+        <item>862-556-8565</item>
+        <item>432-523-652</item>
+        <item>456-985-5268</item>
+        <item>726-535-5225</item>
+        <item>656-495-5236</item>
+    </string-array>
+
+
+
+</resources>
