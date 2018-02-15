@@ -1,39 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
+    android:layout_height="64sp"
     android:padding="8dp"
     android:contextClickable="true">
 
     <ImageView
+        android:id="@+id/symbol"
         android:layout_width="64sp"
         android:layout_height="64sp"
         android:src="@drawable/andriod"
+        android:layout_alignParentLeft="true"
         />
 
 
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:gravity="center_vertical">
+        android:layout_toRightOf="@+id/symbol"
+        android:gravity="center_vertical"
+        >
 
     <TextView
         android:id="@+id/item1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:textAppearanceMedium"
         android:text="Jonathan Ponader"
+        android:textSize="16sp" />
         />
 
     <TextView
         android:id="@+id/item2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:textAppearanceMedium"
         android:text="239-313-9027"
-        />
+        android:textSize="16sp" />
 
     </LinearLayout>
-</LinearLayout>
+
+    <ImageView
+        android:id="@+id/bluetooth"
+        android:layout_width = "64sp"
+        android:layout_height="64sp"
+        android:layout_toLeftOf="@id/wifi"/>
+
+    <ImageView
+        android:id="@+id/wifi"
+        android:layout_width = "64sp"
+        android:layout_height="64sp"
+        android:layout_alignParentRight = "true"
+
+        />
+
+
+</RelativeLayout>

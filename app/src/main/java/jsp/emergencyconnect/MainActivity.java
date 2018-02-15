@@ -9,6 +9,8 @@ import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
@@ -20,7 +22,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class MainActivity extends Activity {
+public class MainActivity extends AppCompatActivity {
     ListView listView;
 
     private static Context sContext;
@@ -43,9 +45,11 @@ public class MainActivity extends Activity {
         Resources res = getResources();
         String[] names = res.getStringArray(R.array.contacts);
         String[] numbers = res.getStringArray(R.array.numbers);
+        int[] bluetooth = res.getIntArray(R.array.bluetooth);
+        int[] wifi = res.getIntArray(R.array.Wifi);
 
         listView=(ListView) findViewById(R.id.list_view);
-        listView.setAdapter(new CustomAdapter(this,names,numbers));
+        listView.setAdapter(new CustomAdapter(this,names,numbers,bluetooth, wifi));
 
         toggle=(Switch)findViewById(R.id.toggle);
         toggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -77,10 +81,18 @@ public class MainActivity extends Activity {
         });
     }
 
-    public static Context getContext() {
-        return sContext;
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+
+        return super.onCreateOptionsMenu(menu);
     }
-    public static Button getButton(){return button;}
+
+    public static Context getContext() {
+        return  sContext;
+    }
+    public  static Button getButton(){return button;}
 
     public void send (View v){
         GlobalClass g = (GlobalClass) getApplication();

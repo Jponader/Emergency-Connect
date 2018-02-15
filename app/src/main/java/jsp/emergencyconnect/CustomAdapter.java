@@ -24,10 +24,14 @@ public class CustomAdapter extends BaseAdapter {
     String [] result;
     Context context;
     String [] result2;
+    int[] result3;
+    int [] result4;
     private static LayoutInflater inflater=null;
-    public CustomAdapter(MainActivity mainActivity, String[] names, String[] numbers) {
+    public CustomAdapter(MainActivity mainActivity, String[] names, String[] numbers, int[] bluetooth, int[] wifi) {
         result=names;
         result2 = numbers;
+        result3 = bluetooth;
+        result4 = wifi;
         context=mainActivity;
         inflater = ( LayoutInflater )context.
                 getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -51,6 +55,9 @@ public class CustomAdapter extends BaseAdapter {
     {
         TextView tv1;
         TextView tv2;
+
+        ImageView iv1;
+        ImageView iv2;
     }
     @Override
     public View getView(final int position, final View convertView, ViewGroup parent) {
@@ -61,6 +68,9 @@ public class CustomAdapter extends BaseAdapter {
         holder.tv2=(TextView) rowView.findViewById(R.id.item2);
         holder.tv1.setText(result[position]);
         holder.tv2.setText(result2[position]);
+
+        setPic(position, rowView);
+
         rowView.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -92,6 +102,29 @@ public class CustomAdapter extends BaseAdapter {
     public void clearSelection()
     {
         if(lastSelectedView != null) lastSelectedView.setBackgroundColor(Color.TRANSPARENT);
+    }
+
+    public void setPic(int position,View rowView)
+    {
+        Holder holder=new Holder();
+
+        holder.iv1=(ImageView) rowView.findViewById(R.id.bluetooth);
+        holder.iv2=(ImageView) rowView.findViewById(R.id.wifi);
+
+        if(result3[position] ==1) {
+             holder.iv1.setImageResource(R.drawable.bluetooth_green);
+        }
+        else {
+            holder.iv1.setImageResource(R.drawable.bluetooth_red);
+         }
+
+        if(result4[position] ==1) {
+            holder.iv2.setImageResource(R.drawable.wifi_green);
+        }
+        else {
+            holder.iv2.setImageResource(R.drawable.wifi_red);
+        }
+
     }
 
 
