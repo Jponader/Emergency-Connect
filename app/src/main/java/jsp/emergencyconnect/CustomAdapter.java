@@ -5,6 +5,7 @@ package jsp.emergencyconnect;
  */
 
          import android.app.Application;
+         import android.content.Intent;
          import android.graphics.Color;
          import android.widget.BaseAdapter;
          import android.content.Context;
@@ -14,6 +15,7 @@ package jsp.emergencyconnect;
          import android.view.ViewGroup;
          import android.widget.BaseAdapter;
          import android.widget.Button;
+         import android.widget.EditText;
          import android.widget.ImageView;
          import android.widget.TextView;
          import android.widget.Toast;
@@ -75,13 +77,11 @@ public class CustomAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 GlobalClass g = (GlobalClass) MainActivity.getContext();
-                Button button= (Button) MainActivity.getButton();
 
                 clearSelection();
 
                 if((lastSelectedView == v)&&(g.getData()!=-1)){
                     g.setData(-1);
-                    button.setEnabled(false);
                     return;
                 }
 
@@ -91,9 +91,8 @@ public class CustomAdapter extends BaseAdapter {
                 g.setData(position);
                 g.setSelected(lastSelectedView);
 
-               // Toast.makeText(context, "You Clicked "+result[position], Toast.LENGTH_LONG).show();
 
-                button.setEnabled(true);
+                startMessage();
             }
         });
         return rowView;
@@ -127,5 +126,11 @@ public class CustomAdapter extends BaseAdapter {
 
     }
 
+    public void startMessage()
+    {
+        GlobalClass g = (GlobalClass) MainActivity.getContext();
+        Intent intent = new Intent(g, Message.class);
+        g.startActivity(intent);
+    }
 
 }

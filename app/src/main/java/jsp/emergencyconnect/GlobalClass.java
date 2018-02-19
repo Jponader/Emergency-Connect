@@ -13,6 +13,13 @@ import android.view.View;
 
 public class GlobalClass extends Application {
     private int data = -1;
+    private int visible = 1;
+
+    public int getVisible(){return this.visible;}
+
+    public void setVisible(int visible) {
+        this.visible = visible;
+    }
 
     public int getData(){
         return this.data;

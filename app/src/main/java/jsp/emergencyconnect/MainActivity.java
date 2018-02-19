@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
@@ -43,7 +44,10 @@ public class MainActivity extends AppCompatActivity {
         button = findViewById(R.id.send);
         context=this;
 
+        GlobalClass g = (GlobalClass) getApplication();
+
         Resources res = getResources();
+
         String[] names = res.getStringArray(R.array.contacts);
         String[] numbers = res.getStringArray(R.array.numbers);
         int[] bluetooth = res.getIntArray(R.array.bluetooth);
@@ -51,31 +55,26 @@ public class MainActivity extends AppCompatActivity {
 
         listView=(ListView) findViewById(R.id.list_view);
         listView.setAdapter(new CustomAdapter(this,names,numbers,bluetooth, wifi));
+        listView.setVisibility(g.getVisible());
 
         toggle=(Switch)findViewById(R.id.toggle);
         toggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                LinearLayout layout = (LinearLayout) findViewById(R.id.message_layout);
+                ListView layout = findViewById(R.id.list_view);
                 GlobalClass g = (GlobalClass) getApplication();
                 final EditText edit = (EditText) findViewById(R.id.message);
 
                 if(isChecked) {
-                  //  Toast.makeText(context, "You Clicked ON ", Toast.LENGTH_LONG).show();
-                    layout.setVisibility(View.VISIBLE);
+                    layout.setVisibility(g.getVisible());
+                    g.setVisible(0);
                 }
                 else {
-                   // Toast.makeText(context, "You Clicked OFF ", Toast.LENGTH_LONG).show();
-                    button.setEnabled(false);
-
-                    edit.setText("");
-
-                    View lastSelectedView =g.getSelected();
-                    if(lastSelectedView != null) lastSelectedView.setBackgroundColor(Color.TRANSPARENT);
 
                     g.setData(-1);
                     g.setSelected(null);
-                    layout.setVisibility(View.INVISIBLE);
+                    layout.setVisibility(g.getVisible());
+                    g.setVisible(1);
 
                 }
             }
@@ -94,35 +93,6 @@ public class MainActivity extends AppCompatActivity {
         return  sContext;
     }
     public  static Button getButton(){return button;}
-
-    public void send (View v){
-        GlobalClass g = (GlobalClass) getApplication();
-        if(g.getData() == -1)return;
-
-        Resources res = getResources();
-        String[] names = res.getStringArray(R.array.contacts);
-
-        final EditText edit = (EditText) findViewById(R.id.message);
-
-        int data=g.getData();
-
-        alertView(names[data],edit.getText().toString());
-
-        edit.setText("");
-    }
-
-    private void alertView( String number , String message) {
-        AlertDialog.Builder dialog = new AlertDialog.Builder(this);
-
-        dialog.setTitle(number)
-                .setMessage(message)
-
-                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialoginterface, int i) {
-                    }
-                })
-                .show();
-    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
