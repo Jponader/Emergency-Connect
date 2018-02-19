@@ -13,7 +13,13 @@ import android.view.View;
 
 public class GlobalClass extends Application {
     private int data = -1;
-    private int visible = 1;
+    private int visible = 4;
+
+    private boolean checked = false;
+
+    public boolean getChecked(){return this.checked;}
+
+    public void setChecked(boolean checked){this.checked = checked;}
 
     public int getVisible(){return this.visible;}
 

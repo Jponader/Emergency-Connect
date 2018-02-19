@@ -58,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
         listView.setVisibility(g.getVisible());
 
         toggle=(Switch)findViewById(R.id.toggle);
+        toggle.setChecked(g.getChecked());
         toggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -66,15 +67,17 @@ public class MainActivity extends AppCompatActivity {
                 final EditText edit = (EditText) findViewById(R.id.message);
 
                 if(isChecked) {
-                    layout.setVisibility(g.getVisible());
                     g.setVisible(0);
+                    layout.setVisibility(g.getVisible());
+                    g.setChecked(true);
                 }
                 else {
 
                     g.setData(-1);
                     g.setSelected(null);
+                    g.setVisible(4);
                     layout.setVisibility(g.getVisible());
-                    g.setVisible(1);
+                    g.setChecked(false);
 
                 }
             }
@@ -104,6 +107,28 @@ public class MainActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    protected void onPause(){
+        super.onPause();
+    }
+
+
+
+    protected void onResume(Bundle savedInstanceState){
+
+        toggle=(Switch)findViewById(R.id.toggle);
+        toggle.setChecked(true);
+
+        super.onResume();
+
+        return;
+    }
+
+    protected void onStop(Bundle savedInstanceState){
+        super.onStop();
+
+        return;
     }
 
 }

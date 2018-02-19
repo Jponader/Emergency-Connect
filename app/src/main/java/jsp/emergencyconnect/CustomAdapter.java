@@ -92,7 +92,7 @@ public class CustomAdapter extends BaseAdapter {
                 g.setSelected(lastSelectedView);
 
 
-                startMessage();
+                startMessage(result[position]);
             }
         });
         return rowView;
@@ -126,10 +126,11 @@ public class CustomAdapter extends BaseAdapter {
 
     }
 
-    public void startMessage()
+    public void startMessage(String title)
     {
         GlobalClass g = (GlobalClass) MainActivity.getContext();
         Intent intent = new Intent(g, Message.class);
+        intent.putExtra("name",title);
         g.startActivity(intent);
     }
 

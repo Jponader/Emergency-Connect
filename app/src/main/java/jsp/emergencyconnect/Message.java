@@ -14,6 +14,8 @@ public class Message extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_message);
+        String title = getIntent().getStringExtra("name");
+        setTitle(title);
     }
 
     public void send (View v){
