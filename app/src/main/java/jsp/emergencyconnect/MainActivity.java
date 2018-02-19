@@ -102,7 +102,8 @@ public class MainActivity extends AppCompatActivity {
         // Handle item selection
         switch (item.getItemId()) {
             case R.id.action_settings:
-                Toast.makeText(context,"Settings",Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(this, Settings.class);
+                startActivity(intent);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
